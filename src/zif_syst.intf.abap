@@ -9,9 +9,9 @@ INTERFACE zif_syst
   TYPES language_iso_format TYPE c LENGTH 2.
   TYPES system_message      TYPE symsg.
   TYPES system_index        TYPE sy-index.
-  TYPES system_tabix        TYPE sy-index.
-  TYPES system_dbcnt        TYPE sy-index.
-  TYPES system_subrc        TYPE sy-index.
+  TYPES system_tabix        TYPE sy-tabix.
+  TYPES system_dbcnt        TYPE sy-dbcnt.
+  TYPES system_subrc        TYPE sy-subrc.
   TYPES system_abcde        TYPE c LENGTH 26.
   TYPES system_fdayw        TYPE int1.
   TYPES system_message_bapi TYPE bapiret2.
