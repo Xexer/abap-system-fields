@@ -58,7 +58,7 @@ ELSE.
 ENDIF.
 ```
 
-Createing a timestamp inline:
+Creating a timestamp inline:
 
 ```ABAP
 DATA(actual_time) = zcl_syst=>create( )->timestamp_long( ).
