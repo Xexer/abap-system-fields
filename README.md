@@ -9,7 +9,7 @@ ABAP Cloud enabled system fields.
 
 ## Fields and Functions
 
-Via this article you can get more informations to the actual structure and functions.
+Via this [article](https://software-heroes.com/en/blog/abap-cloud-system-fields-solution) you can get more informations to the actual structure and functions.
 
 |       Method       |                   Function                  |
 |:------------------:|:-------------------------------------------:|
