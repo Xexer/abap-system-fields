@@ -36,3 +36,30 @@ Via this [article](https://software-heroes.com/en/blog/abap-cloud-system-fields-
 |       message      | sy-msgid, sy-msgno, sy-msgty, sy-msgv1, ... |
 |  message_bapiret2  | sy-msgid, sy-msgno, sy-msgty, sy-msgv1, ... |
 |    message_bali    | sy-msgid, sy-msgno, sy-msgty, sy-msgv1, ... |
+
+## Example
+
+Using as SY-SUBRC in a function:
+
+```ABAP
+AUTHORITY-CHECK OBJECT 'S_APPL_LOG'
+                ID 'ACTVT' FIELD '02'.
+
+RETURN xsdbool( zcl_syst=>create( )->return_code( ) = 0 ).
+```
+
+Using as SY-UNAME in a IF statement:
+
+```ABAP
+IF zcl_syst=>create( )->user_id( ) = 'TECHUSER'.
+  RETURN abap_true.
+ELSE.
+  RETURN abap_false.
+ENDIF.
+```
+
+Createing a timestamp inline:
+
+```ABAP
+DATA(actual_time) = zcl_syst=>create( )->timestamp_long( ).
+```
