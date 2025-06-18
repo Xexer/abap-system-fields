@@ -126,20 +126,15 @@ CLASS zcl_system_default IMPLEMENTATION.
 
 
   METHOD zif_syst~message_bapiret2.
-    DATA(message) = xco_cp=>sy->message( )->value.
+    DATA(message) = xco_cp=>sy->message( ).
 
-    MESSAGE
-      ID message-msgid TYPE message-msgty NUMBER message-msgno
-      WITH message-msgv1 message-msgv2 message-msgv3 message-msgv4
-      INTO DATA(message_text).
-
-    RETURN VALUE #( type       = message-msgty
-                    id         = message-msgid
-                    number     = message-msgno
-                    message_v1 = message-msgv1
-                    message_v2 = message-msgv2
-                    message_v3 = message-msgv3
-                    message_v4 = message-msgv4
-                    message    = message_text ).
+    RETURN VALUE #( type       = message->value-msgty
+                    id         = message->value-msgid
+                    number     = message->value-msgno
+                    message_v1 = message->value-msgv1
+                    message_v2 = message->value-msgv2
+                    message_v3 = message->value-msgv3
+                    message_v4 = message->value-msgv4
+                    message    = message->get_text( ) ).
   ENDMETHOD.
 ENDCLASS.
