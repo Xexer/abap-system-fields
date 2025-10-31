@@ -5,6 +5,7 @@ INTERFACE zif_syst
   TYPES alias               TYPE c LENGTH 40.
   TYPES date                TYPE d.
   TYPES time                TYPE t.
+  TYPES timezone            TYPE cl_abap_context_info=>ty_time_zone.
   TYPES language_sap_format TYPE sylangu.
   TYPES language_iso_format TYPE c LENGTH 2.
   TYPES system_message      TYPE symsg.
@@ -52,7 +53,7 @@ INTERFACE zif_syst
   "! Get system time (SY-UZEIT)
   "! @parameter result | System time
   METHODS system_time
-    RETURNING VALUE(result) TYPE date.
+    RETURNING VALUE(result) TYPE time.
 
   "! Get the system timestamp in short format
   "! @parameter result | Timestamp (Short)
@@ -77,12 +78,12 @@ INTERFACE zif_syst
   "! Get system time (SY-TIMLO)
   "! @parameter result | Local time
   METHODS user_time
-    RETURNING VALUE(result) TYPE date.
+    RETURNING VALUE(result) TYPE time.
 
   "! Get time zone from the logged in user (SY-ZONLO)
   "! @parameter result | Local time
   METHODS time_zone
-    RETURNING VALUE(result) TYPE date.
+    RETURNING VALUE(result) TYPE timezone.
 
   "! Get actual language (SY-LANGU)
   "! @parameter result | Language in SAP format
