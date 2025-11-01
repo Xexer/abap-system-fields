@@ -43,7 +43,7 @@ Start in the constructor to create the instance and assign it to an attribute of
 
 ```ABAP
 sy = zcl_syst=>create( ).
-```.
+```
 
 Using as SY-SUBRC in a function:
 
