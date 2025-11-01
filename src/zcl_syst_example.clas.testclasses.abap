@@ -8,6 +8,11 @@ CLASS ltd_system IMPLEMENTATION.
   METHOD zif_syst~user_id.
     RETURN 'TECHUSER'.
   ENDMETHOD.
+
+
+  METHOD zif_syst~user_time.
+    RETURN '150000'.
+  ENDMETHOD.
 ENDCLASS.
 
 
@@ -15,20 +20,19 @@ CLASS ltc_system DEFINITION FINAL
   FOR TESTING RISK LEVEL HARMLESS DURATION SHORT.
 
   PRIVATE SECTION.
-    DATA cut TYPE REF TO zcl_syst_example.
+    METHODS setup.
 
     METHODS authority_ok     FOR TESTING RAISING cx_static_check.
     METHODS authority_not_ok FOR TESTING RAISING cx_static_check.
     METHODS user_ok          FOR TESTING RAISING cx_static_check.
     METHODS user_not_ok      FOR TESTING RAISING cx_static_check.
-
-    METHODS setup.
+    METHODS time_is_valid    FOR TESTING RAISING cx_static_check.
 ENDCLASS.
 
 
 CLASS ltc_system IMPLEMENTATION.
   METHOD setup.
-    cut = NEW zcl_syst_example( ).
+    zcl_syst_injector=>inject_syst( ).
   ENDMETHOD.
 
 
@@ -38,6 +42,7 @@ CLASS ltc_system IMPLEMENTATION.
     double->return_code( ).
     zcl_syst_injector=>inject_syst( double ).
 
+    DATA(cut) = NEW zcl_syst_example( ).
     DATA(result) = cut->has_authority( ).
 
     cl_abap_unit_assert=>assert_true( result ).
@@ -50,6 +55,7 @@ CLASS ltc_system IMPLEMENTATION.
     double->return_code( ).
     zcl_syst_injector=>inject_syst( double ).
 
+    DATA(cut) = NEW zcl_syst_example( ).
     DATA(result) = cut->has_authority( ).
 
     cl_abap_unit_assert=>assert_false( result ).
@@ -59,6 +65,7 @@ CLASS ltc_system IMPLEMENTATION.
   METHOD user_ok.
     zcl_syst_injector=>inject_syst( NEW ltd_system( ) ).
 
+    DATA(cut) = NEW zcl_syst_example( ).
     DATA(result) = cut->is_technical_user( ).
 
     cl_abap_unit_assert=>assert_true( result ).
@@ -66,8 +73,19 @@ CLASS ltc_system IMPLEMENTATION.
 
 
   METHOD user_not_ok.
+    DATA(cut) = NEW zcl_syst_example( ).
     DATA(result) = cut->is_technical_user( ).
 
     cl_abap_unit_assert=>assert_false( result ).
+  ENDMETHOD.
+
+
+  METHOD time_is_valid.
+    zcl_syst_injector=>inject_syst( NEW ltd_system( ) ).
+
+    DATA(cut) = NEW zcl_syst_example( ).
+    DATA(result) = cut->is_time_valid( ).
+
+    cl_abap_unit_assert=>assert_true( result ).
   ENDMETHOD.
 ENDCLASS.
