@@ -39,19 +39,25 @@ Via this [article](https://software-heroes.com/en/blog/abap-cloud-system-fields-
 
 ## Example
 
+Start in the constructor to create the instance and assign it to an attribute of the class, so your Unit Test should stay stable. We can override the "SY" with this method.
+
+```ABAP
+sy = zcl_syst=>create( ).
+```.
+
 Using as SY-SUBRC in a function:
 
 ```ABAP
 AUTHORITY-CHECK OBJECT 'S_APPL_LOG'
                 ID 'ACTVT' FIELD '02'.
 
-RETURN xsdbool( zcl_syst=>create( )->return_code( ) = 0 ).
+RETURN xsdbool( sy->return_code( ) = 0 ).
 ```
 
 Using as SY-UNAME in a IF statement:
 
 ```ABAP
-IF zcl_syst=>create( )->user_id( ) = 'TECHUSER'.
+IF sy->user_id( ) = 'TECHUSER'.
   RETURN abap_true.
 ELSE.
   RETURN abap_false.
@@ -61,5 +67,5 @@ ENDIF.
 Creating a timestamp inline:
 
 ```ABAP
-DATA(actual_time) = zcl_syst=>create( )->timestamp_long( ).
+DATA(actual_time) = sy->timestamp_long( ).
 ```
