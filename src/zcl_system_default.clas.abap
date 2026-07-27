@@ -111,7 +111,13 @@ CLASS zcl_system_default IMPLEMENTATION.
 
 
   METHOD zif_syst~weekday.
-    RETURN sy-fdayw.
+    DATA(weekday) = zif_syst~date_functions( )->get_weekday( ).
+
+    IF weekday = zif_date=>weekdays-sunday.
+      RETURN zif_syst=>weekdays-sunday.
+    ELSE.
+      RETURN weekday.
+    ENDIF.
   ENDMETHOD.
 
 
@@ -136,5 +142,10 @@ CLASS zcl_system_default IMPLEMENTATION.
                     message_v3 = message->value-msgv3
                     message_v4 = message->value-msgv4
                     message    = message->get_text( ) ).
+  ENDMETHOD.
+
+
+  METHOD zif_syst~date_functions.
+    RETURN zcl_date_factory=>create_date( zif_syst~system_date( ) ).
   ENDMETHOD.
 ENDCLASS.

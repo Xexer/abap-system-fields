@@ -11,14 +11,14 @@ CLASS zcl_syst DEFINITION
 
   PRIVATE SECTION.
     "! Injected Test-Double from ZCL_SYST_INJECTOR
-    CLASS-DATA incejted_syst TYPE REF TO zif_syst.
+    CLASS-DATA injected_syst TYPE REF TO zif_syst.
 ENDCLASS.
 
 
 CLASS zcl_syst IMPLEMENTATION.
   METHOD create.
-    IF incejted_syst IS BOUND.
-      RETURN incejted_syst.
+    IF injected_syst IS BOUND.
+      RETURN injected_syst.
     ELSE.
       RETURN NEW zcl_system_default( ).
     ENDIF.

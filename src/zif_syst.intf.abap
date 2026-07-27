@@ -149,4 +149,9 @@ INTERFACE zif_syst
   "! @parameter result | Last system message (BALI instance)
   METHODS message_bali
     RETURNING VALUE(result) TYPE system_message_bali.
+
+  "! Get the date function object for the actual date
+  "! @parameter result | Date functions
+  METHODS date_functions
+    RETURNING VALUE(result) TYPE REF TO zif_date.
 ENDINTERFACE.
