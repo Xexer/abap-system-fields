@@ -14,16 +14,12 @@ CLASS zcl_syst_example DEFINITION
     METHODS is_time_valid
       RETURNING VALUE(result) TYPE abap_boolean.
 
-protected section.
   PRIVATE SECTION.
     DATA sy TYPE REF TO zif_syst.
 ENDCLASS.
 
 
-
-CLASS ZCL_SYST_EXAMPLE IMPLEMENTATION.
-
-
+CLASS zcl_syst_example IMPLEMENTATION.
   METHOD constructor.
     sy = zcl_syst=>create( ).
   ENDMETHOD.
