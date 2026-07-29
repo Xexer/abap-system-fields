@@ -37,6 +37,22 @@ Via this [article](https://software-heroes.com/en/blog/abap-cloud-system-fields-
 |  message_bapiret2  | sy-msgid, sy-msgno, sy-msgty, sy-msgv1, ... |
 |    message_bali    | sy-msgid, sy-msgno, sy-msgty, sy-msgv1, ... |
 
+## Date Functions
+
+In the newest classes we utilize ``I_CalendarDate`` to give easy and fast access to date functions. You will find methods for often used calculation methods.
+
+|       Method       |                   Description                  |
+|------------------|-------------------------------------------|
+| get_raw_date | Return full data set from I_CalendarDate |
+| get_quarter | Return the quarter |
+| get_week | Number of the week |
+| get_weekday | Weekday as integer (constants available) |
+| get_first_day_of_week | First day of the week |
+| get_first_day_of_month | First day of the month |
+| get_last_day_of_week | Last day of the week |
+| get_last_day_of_month | Last day of the month |
+| get_calendar_day_of_the_year | Return the number of the day in the actual year |
+
 ## Example
 
 Start in the constructor to create the instance and assign it to an attribute of the class, so your Unit Test should stay stable. We can override the "SY" with this method.
@@ -68,4 +84,13 @@ Creating a timestamp inline:
 
 ```ABAP
 DATA(actual_time) = sy->timestamp_long( ).
+```
+
+Retrieve information about the weekday.
+
+```ABAP
+DATA(today) = sy->date_functions( ).
+DATA(weekday) = today->get_weekday( ).
+
+DATA(weekday_new) = sy->date_functions( )->get_weekday( ).
 ```
