@@ -8,16 +8,11 @@ CLASS zcl_syst_injector DEFINITION
     "! @parameter double | Test-Double
     CLASS-METHODS inject_syst
       IMPORTING double TYPE REF TO zif_syst OPTIONAL.
-protected section.
-private section.
 ENDCLASS.
 
 
-
-CLASS ZCL_SYST_INJECTOR IMPLEMENTATION.
-
-
+CLASS zcl_syst_injector IMPLEMENTATION.
   METHOD inject_syst.
-    zcl_syst=>incejted_syst = double.
+    zcl_syst=>injected_syst = double.
   ENDMETHOD.
 ENDCLASS.

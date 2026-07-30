@@ -18,22 +18,24 @@ INTERFACE zif_syst
   TYPES system_message_bapi TYPE bapiret2.
   TYPES system_message_bali TYPE REF TO if_bali_message_setter.
 
-  TYPES: BEGIN OF system_info,
-           client          TYPE sy-mandt,
-           system_id       TYPE sy-sysid,
-           calling_program TYPE c LENGTH 40,
-           abap_release    TYPE c LENGTH 4,
-         END OF system_info.
+  TYPES:
+    BEGIN OF system_info,
+      client          TYPE sy-mandt,
+      system_id       TYPE sy-sysid,
+      calling_program TYPE c LENGTH 40,
+      abap_release    TYPE c LENGTH 4,
+    END OF system_info.
 
-  CONSTANTS: BEGIN OF weekdays,
-               monday    TYPE system_fdayw VALUE 1,
-               tuesday   TYPE system_fdayw VALUE 2,
-               wednesday TYPE system_fdayw VALUE 3,
-               thursday  TYPE system_fdayw VALUE 4,
-               friday    TYPE system_fdayw VALUE 5,
-               saturday  TYPE system_fdayw VALUE 6,
-               sunday    TYPE system_fdayw VALUE 0,
-             END OF weekdays.
+  CONSTANTS:
+    BEGIN OF weekdays,
+      monday    TYPE system_fdayw VALUE 1,
+      tuesday   TYPE system_fdayw VALUE 2,
+      wednesday TYPE system_fdayw VALUE 3,
+      thursday  TYPE system_fdayw VALUE 4,
+      friday    TYPE system_fdayw VALUE 5,
+      saturday  TYPE system_fdayw VALUE 6,
+      sunday    TYPE system_fdayw VALUE 0,
+    END OF weekdays.
 
   "! Get actual logged in User (SY-UNAME)
   "! @parameter result | ID of the User
@@ -130,7 +132,7 @@ INTERFACE zif_syst
   METHODS letter_lower
     RETURNING VALUE(result) TYPE system_abcde.
 
-  "! Get day of the week (SY-FDAYW)
+  "! Get day of the week (date_function), compare with {@link zif_syst=>weekdays}
   "! @parameter result | Return code
   METHODS weekday
     RETURNING VALUE(result) TYPE system_fdayw.

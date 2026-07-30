@@ -30,8 +30,8 @@ INTERFACE zif_date
   METHODS get_week
     RETURNING VALUE(result) TYPE raw_date-CalendarWeek.
 
-  "! Get week day for the date
-  "! @parameter result | Day of the week (Constant weekdays)
+  "! Get week day for the date, compare with {@link zif_date=>weekdays}
+  "! @parameter result | Day of the week
   METHODS get_weekday
     RETURNING VALUE(result) TYPE raw_date-WeekDay.
 
