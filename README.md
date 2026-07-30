@@ -2,7 +2,7 @@
 
 ## Introduction
 
-ABAP Cloud enabled system fields.
+ABAP Cloud enabled system fields and date functions.
 - Decoupled from coding
 - ABAP Cloud best practices
 - Testable (Injector Pattern)
@@ -86,7 +86,7 @@ Creating a timestamp inline:
 DATA(actual_time) = sy->timestamp_long( ).
 ```
 
-Retrieve information about the weekday.
+Retrieve information about the weekday:
 
 ```ABAP
 DATA(today) = sy->date_functions( ).
